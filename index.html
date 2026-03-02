@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OBRIO Career Storm — Case Tasks</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+      :root{--bg:#070518;--surface:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);--purple:#6c3ee8;--violet:#9b6dff;--teal:#00d4aa;--gold:#f5c842;--red:#ff5c7a;--text:#e8e4ff;--muted:#7a74a8;}
+      html{scroll-behavior:smooth;}
+      body{background:var(--bg);font-family:"Inter",sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden;display:flex;align-items:center;justify-content:center;}
+      #canvas-bg{position:fixed;inset:0;z-index:0;pointer-events:none;}
+      .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;animation:drift 18s ease-in-out infinite alternate;}
+      .orb-a{width:700px;height:700px;background:rgba(108,62,232,0.12);top:-250px;right:-150px;animation-delay:0s;}
+      .orb-b{width:500px;height:500px;background:rgba(0,212,170,0.07);bottom:-150px;left:-150px;animation-delay:-9s;}
+      @keyframes drift{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,30px) scale(1.08);}}
+      .wrap{position:relative;z-index:1;max-width:860px;width:100%;margin:0 auto;padding:40px 28px 80px;}
+      .hero{padding:80px 0 56px;text-align:center;}
+      .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,62,232,0.15);border:1px solid rgba(108,62,232,0.3);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--violet);margin-bottom:24px;}
+      .hero h1{font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1.08;background:linear-gradient(135deg,#fff 30%,var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+      .hero-sub{font-size:16px;color:var(--muted);line-height:1.6;max-width:520px;margin:0 auto 32px;}
+      .hero-sub strong{color:rgba(232,228,255,0.7);font-weight:500;}
+      .squiggle{display:block;width:80px;height:6px;margin:0 auto 40px;background:none;border-bottom:3px solid var(--violet);border-radius:0 0 40% 40%;opacity:0.5;transform:rotate(-1deg);}
+      .cards{display:flex;flex-direction:column;gap:14px;}
+      .card{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px 28px;transition:transform 0.22s ease,border-color 0.22s ease,box-shadow 0.22s ease;position:relative;overflow:hidden;}
+      .card::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");border-radius:inherit;pointer-events:none;z-index:0;}
+      .card>*{position:relative;z-index:1;}
+      .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px;}
+      .card-num-wrap{display:flex;align-items:center;gap:14px;}
+      .card-num{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:0.5px;min-width:28px;font-variant-numeric:tabular-nums;}
+      .card-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+      .card-title-group h2{font-size:17px;font-weight:700;letter-spacing:-0.3px;color:white;margin-bottom:3px;}
+      .card-title-group p{font-size:12px;color:var(--muted);}
+      .arrow-icon{color:var(--muted);font-size:18px;flex-shrink:0;margin-top:2px;transition:transform 0.2s ease,color 0.2s ease;}
+      .card:hover .arrow-icon{transform:translate(3px,-3px);color:var(--violet);}
+      .card-tags{display:flex;flex-wrap:wrap;gap:6px;}
+      .tag{display:inline-block;padding:3px 9px;border-radius:6px;font-size:10.5px;font-weight:600;letter-spacing:0.2px;}
+      .card-1{--acc:#6c3ee8;--acc-light:rgba(108,62,232,0.12);}
+      .card-2{--acc:#00d4aa;--acc-light:rgba(0,212,170,0.1);}
+      .card-3{--acc:#f5c842;--acc-light:rgba(245,200,66,0.1);}
+      .card-1 .card-icon{background:rgba(108,62,232,0.15);border:1px solid rgba(108,62,232,0.25);}
+      .card-2 .card-icon{background:rgba(0,212,170,0.12);border:1px solid rgba(0,212,170,0.25);}
+      .card-3 .card-icon{background:rgba(245,200,66,0.12);border:1px solid rgba(245,200,66,0.25);}
+      .card-1:hover{border-color:rgba(108,62,232,0.4);box-shadow:0 12px 40px rgba(108,62,232,0.18);}
+      .card-2:hover{border-color:rgba(0,212,170,0.35);box-shadow:0 12px 40px rgba(0,212,170,0.12);}
+      .card-3:hover{border-color:rgba(245,200,66,0.35);box-shadow:0 12px 40px rgba(245,200,66,0.1);}
+      .tag-1{background:rgba(108,62,232,0.15);color:#a78bfa;}
+      .tag-2{background:rgba(0,212,170,0.12);color:#2dd4bf;}
+      .tag-3{background:rgba(245,200,66,0.12);color:#fbd64a;}
+      .tag-gray{background:rgba(255,255,255,0.06);color:var(--muted);}
+      .section-divider{display:flex;align-items:center;gap:14px;margin:40px 0 24px;}
+      .section-divider span{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;white-space:nowrap;}
+      .section-divider::before,.section-divider::after{content:"";flex:1;height:1px;background:var(--border);}
+      .about-strip{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:14px;padding:18px 22px;font-size:13px;color:var(--muted);line-height:1.7;}
+      .about-strip strong{color:rgba(232,228,255,0.75);font-weight:500;}
+      .footer{margin-top:60px;text-align:center;font-size:12px;color:rgba(138,130,184,0.5);}
+      .footer a{color:var(--violet);text-decoration:none;opacity:0.7;}
+      .footer a:hover{opacity:1;}
+      .card-glow{position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity 0.4s;pointer-events:none;z-index:0;}
+      .card-1 .card-glow{background:radial-gradient(circle at 20% 50%,rgba(108,62,232,0.08),transparent 60%);}
+      .card-2 .card-glow{background:radial-gradient(circle at 20% 50%,rgba(0,212,170,0.06),transparent 60%);}
+      .card-3 .card-glow{background:radial-gradient(circle at 20% 50%,rgba(245,200,66,0.06),transparent 60%);}
+      .card:hover .card-glow{opacity:1;}
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas-bg"></canvas>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="wrap">
+      <header class="hero">
+        <div class="hero-eyebrow">⚡ OBRIO Career Storm 2026</div>
+        <h1>Case Task<br />Submission</h1>
+        <span class="squiggle"></span>
+        <p class="hero-sub">
+          Відповіді на всі 5 завдань —<br />
+          <strong>Product · Performance Marketing · Operations · Payments</strong>
+        </p>
+      </header>
+      <div class="cards">
+        <a href="task1_nebula_1pager.html" class="card card-1">
+          <div class="card-glow"></div>
+          <div class="card-top">
+            <div class="card-num-wrap">
+              <span class="card-num">01</span>
+              <div class="card-icon">🌌</div>
+              <div class="card-title-group">
+                <h2>AskNebula — Project Proposal</h2>
+                <p>1-pager · SWOT · Product Strategy · Market Cap Impact</p>
+              </div>
+            </div>
+            <span class="arrow-icon">↗</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-1">Product</span>
+            <span class="tag tag-1">SWOT Analysis</span>
+            <span class="tag tag-1">Project Gravity</span>
+            <span class="tag tag-gray">AI Personalization Engine</span>
+            <span class="tag tag-gray">Market Cap +$48M</span>
+            <span class="tag tag-gray">9-Month Roadmap</span>
+          </div>
+        </a>
+        <a href="task2_perf_marketing.html" class="card card-2">
+          <div class="card-glow"></div>
+          <div class="card-top">
+            <div class="card-num-wrap">
+              <span class="card-num">02</span>
+              <div class="card-icon">⚡</div>
+              <div class="card-title-group">
+                <h2>Performance Marketing Cycle</h2>
+                <p>AI-інструменти · Від ідеї до запуску · Flowchart</p>
+              </div>
+            </div>
+            <span class="arrow-icon">↗</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-2">Perf Marketing</span>
+            <span class="tag tag-2">AI Tools Stack</span>
+            <span class="tag tag-2">6-Phase Cycle</span>
+            <span class="tag tag-gray">Perplexity · Claude · Midjourney</span>
+            <span class="tag tag-gray">Meta Advantage+</span>
+            <span class="tag tag-gray">HeyGen · Northbeam</span>
+          </div>
+        </a>
+        <a href="task3_4_5_answers.html" class="card card-3">
+          <div class="card-glow"></div>
+          <div class="card-top">
+            <div class="card-num-wrap">
+              <span class="card-num">03–05</span>
+              <div class="card-icon">📊</div>
+              <div class="card-title-group">
+                <h2>Operations · Scaling · Payments</h2>
+                <p>CSAT Recovery · RPE vs Liquidity · US Market Entry</p>
+              </div>
+            </div>
+            <span class="arrow-icon">↗</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-3">Operations Manager</span>
+            <span class="tag tag-3">CSAT 4.8→4.5</span>
+            <span class="tag tag-3">Mgmt by Exception</span>
+            <span class="tag tag-gray">Payments Ecosystem</span>
+            <span class="tag tag-gray">Approval Rate 70%</span>
+            <span class="tag tag-gray">Chargeback Strategy</span>
+          </div>
+        </a>
+      </div>
+      <div class="section-divider"><span>Контекст</span></div>
+      <div class="about-strip">
+        Всі завдання виконані в рамках <strong>OBRIO Career Storm 2026</strong> — відкритого відбіркового процесу OBRIO. Матеріали демонструють підхід до аналітичного та системного мислення. Всі дані та сценарії є гіпотетичними й призначені виключно для оцінки кандидата.
+      </div>
+      <footer class="footer">
+        <p>OBRIO Career Storm 2026 &nbsp;·&nbsp; Case Task Submission</p>
+      </footer>
+    </div>
+    <script>
+      const canvas = document.getElementById("canvas-bg");
+      const ctx = canvas.getContext("2d");
+      let W, H, stars = [];
+      function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+      function initStars(n = 130) {
+        stars = Array.from({ length: n }, () => ({
+          x: Math.random() * W, y: Math.random() * H,
+          r: Math.random() * 1.4 + 0.3, alpha: Math.random() * 0.6 + 0.1,
+          speed: Math.random() * 0.003 + 0.001, phase: Math.random() * Math.PI * 2,
+        }));
+      }
+      function draw(t) {
+        ctx.clearRect(0, 0, W, H);
+        stars.forEach((s) => {
+          const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+          ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(200,190,255,${a})`; ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      window.addEventListener("resize", () => { resize(); initStars(); });
+      resize(); initStars(); requestAnimationFrame(draw);
+    </script>
+  </body>
+</html>

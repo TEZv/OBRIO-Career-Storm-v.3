@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AskNebula — Project Proposal | OBRIO Career Storm</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --cosmic: #0a0720;
+        --nebula: #13103a;
+        --purple: #6c3ee8;
+        --violet: #9b6dff;
+        --gold: #f5c842;
+        --teal: #00d4aa;
+        --red: #ff5c7a;
+        --text: #e8e4ff;
+        --muted: #8a82b8;
+        --card: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.08);
+      }
+
+      body {
+        background: var(--cosmic);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .page {
+        width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* STARFIELD */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 3s infinite alternate;
+      }
+
+      @keyframes twinkle {
+        from {
+          opacity: 0.2;
+        }
+
+        to {
+          opacity: 0.9;
+        }
+      }
+
+      /* GLOW ORBS */
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .orb-1 {
+        width: 600px;
+        height: 600px;
+        background: rgba(108, 62, 232, 0.15);
+        top: -200px;
+        right: -100px;
+      }
+
+      .orb-2 {
+        width: 400px;
+        height: 400px;
+        background: rgba(0, 212, 170, 0.08);
+        bottom: -100px;
+        left: -100px;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* HEADER */
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, var(--purple), var(--violet));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+      }
+
+      .logo-text {
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-text span {
+        color: var(--violet);
+      }
+
+      .header-meta {
+        text-align: right;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(108, 62, 232, 0.2);
+        border: 1px solid rgba(108, 62, 232, 0.4);
+        color: var(--violet);
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      /* HEADLINE */
+      .headline-section {
+        margin-bottom: 28px;
+      }
+
+      .project-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--teal);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: 36px;
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        background: linear-gradient(135deg, #fff 0%, var(--violet) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
+      }
+
+      .tagline {
+        font-size: 16px;
+        color: var(--muted);
+        font-weight: 400;
+        max-width: 600px;
+      }
+
+      .tagline strong {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      /* MAIN GRID */
+      .grid-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .grid-bottom {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      /* CARDS */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        backdrop-filter: blur(20px);
+      }
+
+      .card-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .card-title .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* SWOT */
+      .swot-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .swot-quad {
+        padding: 12px 14px;
+        border-radius: 10px;
+      }
+
+      .swot-quad.s {
+        background: rgba(0, 212, 170, 0.08);
+        border: 1px solid rgba(0, 212, 170, 0.2);
+      }
+
+      .swot-quad.w {
+        background: rgba(255, 92, 122, 0.08);
+        border: 1px solid rgba(255, 92, 122, 0.2);
+      }
+
+      .swot-quad.o {
+        background: rgba(108, 62, 232, 0.08);
+        border: 1px solid rgba(108, 62, 232, 0.2);
+      }
+
+      .swot-quad.t {
+        background: rgba(245, 200, 66, 0.08);
+        border: 1px solid rgba(245, 200, 66, 0.2);
+      }
+
+      .swot-quad .label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .swot-quad.s .label {
+        color: var(--teal);
+      }
+
+      .swot-quad.w .label {
+        color: var(--red);
+      }
+
+      .swot-quad.o .label {
+        color: var(--violet);
+      }
+
+      .swot-quad.t .label {
+        color: var(--gold);
+      }
+
+      .swot-quad ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .swot-quad ul li {
+        font-size: 11.5px;
+        color: rgba(232, 228, 255, 0.8);
+        padding: 2px 0;
+        padding-left: 10px;
+        position: relative;
+        line-height: 1.4;
+      }
+
+      .swot-quad ul li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        font-size: 10px;
+        opacity: 0.4;
+      }
+
+      /* PROJECT PROPOSAL */
+      .proposal-card {
+        background: linear-gradient(
+          135deg,
+          rgba(108, 62, 232, 0.15),
+          rgba(0, 212, 170, 0.05)
+        );
+        border: 1px solid rgba(108, 62, 232, 0.3);
+      }
+
+      .proposal-title {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 4px;
+        background: linear-gradient(90deg, #fff, var(--violet));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .proposal-subtitle {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      .initiative-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .initiative {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .initiative-num {
+        width: 22px;
+        height: 22px;
+        background: linear-gradient(135deg, var(--purple), var(--violet));
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .initiative-text strong {
+        display: block;
+        font-size: 12.5px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      .initiative-text span {
+        font-size: 11.5px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      /* TIMELINE */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .tl-item {
+        display: flex;
+        gap: 10px;
+        padding-bottom: 10px;
+        position: relative;
+      }
+
+      .tl-item:last-child {
+        padding-bottom: 0;
+      }
+
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 22px;
+        bottom: 0;
+        width: 1px;
+        background: var(--border);
+      }
+
+      .tl-item:last-child::before {
+        display: none;
+      }
+
+      .tl-dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+        flex-shrink: 0;
+        z-index: 1;
+      }
+
+      .tl-body {
+        padding-top: 2px;
+      }
+
+      .tl-period {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 2px;
+      }
+
+      .tl-desc {
+        font-size: 11.5px;
+        line-height: 1.4;
+        color: rgba(232, 228, 255, 0.85);
+      }
+
+      /* RISKS */
+      .risk-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 10px;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        font-size: 11.5px;
+      }
+
+      .risk-high {
+        background: rgba(255, 92, 122, 0.1);
+        border: 1px solid rgba(255, 92, 122, 0.2);
+      }
+
+      .risk-med {
+        background: rgba(245, 200, 66, 0.08);
+        border: 1px solid rgba(245, 200, 66, 0.2);
+      }
+
+      .risk-low {
+        background: rgba(0, 212, 170, 0.08);
+        border: 1px solid rgba(0, 212, 170, 0.2);
+      }
+
+      .risk-level {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 4px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .risk-high .risk-level {
+        background: rgba(255, 92, 122, 0.3);
+        color: #ff8fa0;
+      }
+
+      .risk-med .risk-level {
+        background: rgba(245, 200, 66, 0.3);
+        color: var(--gold);
+      }
+
+      .risk-low .risk-level {
+        background: rgba(0, 212, 170, 0.3);
+        color: var(--teal);
+      }
+
+      /* IMPACT */
+      .impact-card {
+        background: linear-gradient(
+          135deg,
+          rgba(245, 200, 66, 0.12),
+          rgba(245, 200, 66, 0.03)
+        );
+        border: 1px solid rgba(245, 200, 66, 0.25);
+      }
+
+      .big-number {
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: -2px;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .big-label {
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      .metric-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 11.5px;
+      }
+
+      .metric-row:last-child {
+        border-bottom: none;
+      }
+
+      .metric-val {
+        font-weight: 700;
+        color: var(--teal);
+      }
+
+      /* RESOURCES */
+      .resource-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .resource-chip {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .resource-chip strong {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 2px;
+        color: white;
+      }
+
+      .resource-chip span {
+        color: var(--muted);
+      }
+
+      /* FOOTER */
+      .footer {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: var(--violet);
+      }
+
+      @media print {
+        body {
+          background: #0a0720;
+        }
+
+        .stars,
+        .orb {
+          display: none;
+        }
+
+        .back-btn {
+          position: fixed;
+          top: 20px;
+          left: 24px;
+          z-index: 999;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px 8px 12px;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 100px;
+          font-family: "Inter", sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          color: rgba(232, 228, 255, 0.7);
+          text-decoration: none;
+          backdrop-filter: blur(12px);
+          transition:
+            background 0.2s,
+            border-color 0.2s,
+            color 0.2s,
+            transform 0.2s;
+        }
+      }
+      .back-btn:hover {
+        background: rgba(108, 62, 232, 0.18);
+        border-color: rgba(108, 62, 232, 0.4);
+        color: #c4b5fd;
+        transform: translateX(-2px);
+      }
+
+      .back-btn svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="index.html" class="back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      Назад
+    </a>
+
+    <!-- Stars -->
+    <div class="stars" id="stars"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="page">
+      <div class="content">
+        <!-- HEADER -->
+        <div class="header">
+          <div class="logo-area">
+            <div class="logo-icon">🌌</div>
+            <div>
+              <div class="logo-text">Ask<span>Nebula</span> × OBRIO</div>
+              <div
+                style="font-size: 11px; color: var(--muted); margin-top: 2px"
+              >
+                Strategic Improvement Project · 1-Pager
+              </div>
+            </div>
+          </div>
+          <div class="header-meta">
+            <span class="badge">⚡ OBRIO Career Storm 2026</span><br />
+            <span style="margin-top: 6px; display: block"
+              >Candidate Submission · Task 1</span
+            >
+          </div>
+        </div>
+
+        <!-- HEADLINE -->
+        <div class="headline-section">
+          <div class="project-label">🚀 PROJECT PROPOSAL</div>
+          <h1>Project Gravity: AI-Personalization Engine</h1>
+          <p class="tagline">
+            Перетворення AskNebula з <strong>контент-платформи</strong> на
+            <strong>персонального AI-провідника</strong> — щоб кожен користувач
+            відчував, що зорі говорять саме з ним
+          </p>
+        </div>
+
+        <!-- ROW 1: SWOT + PROPOSAL -->
+        <div class="grid-main">
+          <!-- SWOT -->
+          <div class="card">
+            <div class="card-title">
+              <div class="dot" style="background: var(--violet)"></div>
+              Аналіз продукту AskNebula
+            </div>
+            <div class="swot-grid">
+              <div class="swot-quad s">
+                <div class="label">💪 Strengths</div>
+                <ul>
+                  <li>Marketplace-модель: мережевий ефект</li>
+                  <li>Ринок астрології $14.2B (CAGR 9.1%)</li>
+                  <li>Кілька revenue-потоків (sub + per-session)</li>
+                  <li>Сильний emotional engagement</li>
+                </ul>
+              </div>
+              <div class="swot-quad w">
+                <div class="label">⚠️ Weaknesses</div>
+                <ul>
+                  <li>Високий CAC у перенасиченому App Store</li>
+                  <li>Масштабування якості экспертів обмежене</li>
+                  <li>Довіра: бар'єр "pseudoscience"</li>
+                  <li>Одноразові юзери → низький LTV tail</li>
+                </ul>
+              </div>
+              <div class="swot-quad o">
+                <div class="label">🌟 Opportunities</div>
+                <ul>
+                  <li>AI-reading: scale без росту cost of experts</li>
+                  <li>Gen Z wellness segment (self-discovery)</li>
+                  <li>Community / social layer (коефіцієнт вірусності)</li>
+                  <li>B2B white-label для wellness-платформ</li>
+                </ul>
+              </div>
+              <div class="swot-quad t">
+                <div class="label">⚡ Threats</div>
+                <ul>
+                  <li>Безкоштовні конкуренти (Co-Star, Sanctuary)</li>
+                  <li>App Store policy / payment risk</li>
+                  <li>LLM-конкуренти (ChatGPT як "безкоштовний астролог")</li>
+                  <li>Churn у кризу (discretionary spend)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT PROPOSAL -->
+          <div class="card proposal-card">
+            <div class="card-title">
+              <div class="dot" style="background: var(--teal)"></div>
+              Project Gravity — що і чому
+            </div>
+            <div class="proposal-title">AI Personalization Engine</div>
+            <div class="proposal-subtitle">
+              Від generic-гороскопу до гіпер-персональних інсайтів на основі
+              поведінки + birth chart + контексту
+            </div>
+            <div class="initiative-list">
+              <div class="initiative">
+                <div class="initiative-num">1</div>
+                <div class="initiative-text">
+                  <strong>Dynamic Birth Chart AI Layer</strong>
+                  <span
+                    >LLM + астрологічна онтологія генерує щоденні
+                    персоналізовані прогнози замість шаблонів. Витрати на
+                    генерацію контенту → $0.0002/user/day</span
+                  >
+                </div>
+              </div>
+              <div class="initiative">
+                <div class="initiative-num">2</div>
+                <div class="initiative-text">
+                  <strong>Behavioral Context Engine</strong>
+                  <span
+                    >Трекер настрою + мікро-опитування після кожного сеансу. AI
+                    навчається на паттернах → зростання retention D30 на
+                    18-25%</span
+                  >
+                </div>
+              </div>
+              <div class="initiative">
+                <div class="initiative-num">3</div>
+                <div class="initiative-text">
+                  <strong>Expert-AI Hybrid Sessions</strong>
+                  <span
+                    >AI pre-generates "brief" перед живою сесією → скорочення
+                    avg. session time на 35%, зростання expert throughput ×
+                    2.3×</span
+                  >
+                </div>
+              </div>
+              <div class="initiative">
+                <div class="initiative-num">4</div>
+                <div class="initiative-text">
+                  <strong>Social Constellation Layer</strong>
+                  <span
+                    >Compatibility feeds, групові ритуали — вірусний loop.
+                    Очікуваний k-фактор: 0.3-0.5 → органічне зниження CAC на
+                    20%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: TIMELINE + RISKS + IMPACT -->
+        <div class="grid-bottom">
+          <!-- TIMELINE + RESOURCES -->
+          <div class="card">
+            <div class="card-title">
+              <div class="dot" style="background: var(--purple)"></div>
+              Таймлайн & Ресурси
+            </div>
+            <div class="timeline">
+              <div class="tl-item">
+                <div
+                  class="tl-dot"
+                  style="background: rgba(0, 212, 170, 0.2); color: var(--teal)"
+                >
+                  1
+                </div>
+                <div class="tl-body">
+                  <div class="tl-period">
+                    Місяці 1–2 · Discovery & Foundation
+                  </div>
+                  <div class="tl-desc">
+                    User research (n=500), birth chart API integration, LLM
+                    prompt architecture. Команда: 2 BE, 1 ML, 1 PM, 1 UX
+                  </div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div
+                  class="tl-dot"
+                  style="
+                    background: rgba(108, 62, 232, 0.2);
+                    color: var(--violet);
+                  "
+                >
+                  2
+                </div>
+                <div class="tl-body">
+                  <div class="tl-period">
+                    Місяці 3–4 · MVP Alpha (закрите бета)
+                  </div>
+                  <div class="tl-desc">
+                    Dynamic content engine, mood tracker, A/B test vs baseline.
+                    Метрика успіху: D30 retention ↑15%
+                  </div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div
+                  class="tl-dot"
+                  style="
+                    background: rgba(245, 200, 66, 0.2);
+                    color: var(--gold);
+                  "
+                >
+                  3
+                </div>
+                <div class="tl-body">
+                  <div class="tl-period">
+                    Місяці 5–6 · Hybrid Sessions + Social
+                  </div>
+                  <div class="tl-desc">
+                    Expert-AI brief system, compatibility layer. Команда
+                    розширюється: +1 iOS, +1 Android
+                  </div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div
+                  class="tl-dot"
+                  style="background: rgba(255, 92, 122, 0.2); color: var(--red)"
+                >
+                  4
+                </div>
+                <div class="tl-body">
+                  <div class="tl-period">Місяці 7–9 · Full Rollout + Scale</div>
+                  <div class="tl-desc">
+                    Global launch, marketing amplification, real-time
+                    personalization V2. Бюджет маркетингу: $300K
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: 14px">
+              <div class="card-title" style="margin-bottom: 10px">
+                <div class="dot" style="background: var(--muted)"></div>
+                Ресурси (загальний бюджет ~$1.2M / 9 міс.)
+              </div>
+              <div class="resource-grid">
+                <div class="resource-chip">
+                  <strong>👥 Team</strong
+                  ><span>8 FTE core + 3 contractors</span>
+                </div>
+                <div class="resource-chip">
+                  <strong>☁️ Infra</strong><span>$15K/міс AWS + LLM API</span>
+                </div>
+                <div class="resource-chip">
+                  <strong>🧪 Research</strong
+                  ><span>$40K user testing + data</span>
+                </div>
+                <div class="resource-chip">
+                  <strong>📣 Marketing</strong
+                  ><span>$300K launch amplification</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RISKS -->
+          <div class="card">
+            <div class="card-title">
+              <div class="dot" style="background: var(--red)"></div>
+              Ризики & Мітигація
+            </div>
+            <div class="risk-item risk-high">
+              <div class="risk-level">HIGH</div>
+              <div style="font-size: 11.5px">
+                <strong>LLM Hallucination</strong><br /><span
+                  style="color: var(--muted)"
+                  >Мітигація: human-in-the-loop review + guardrails</span
+                >
+              </div>
+            </div>
+            <div class="risk-item risk-high">
+              <div class="risk-level">HIGH</div>
+              <div style="font-size: 11.5px">
+                <strong>Expert Resistance</strong><br /><span
+                  style="color: var(--muted)"
+                  >Мітигація: revenue-share збереження, AI як "помічник"</span
+                >
+              </div>
+            </div>
+            <div class="risk-item risk-med">
+              <div class="risk-level">MED</div>
+              <div style="font-size: 11.5px">
+                <strong>Data Privacy / GDPR</strong><br /><span
+                  style="color: var(--muted)"
+                  >Мітигація: on-device processing, opt-in only</span
+                >
+              </div>
+            </div>
+            <div class="risk-item risk-med">
+              <div class="risk-level">MED</div>
+              <div style="font-size: 11.5px">
+                <strong>Feature bloat → UX degradation</strong><br /><span
+                  style="color: var(--muted)"
+                  >Мітигація: strict scope gates, чіткий MVP</span
+                >
+              </div>
+            </div>
+            <div class="risk-item risk-low">
+              <div class="risk-level">LOW</div>
+              <div style="font-size: 11.5px">
+                <strong>Конкурент copycat</strong><br /><span
+                  style="color: var(--muted)"
+                  >Мітигація: proprietary behavioral data moat</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- IMPACT -->
+          <div class="card impact-card">
+            <div class="card-title">
+              <div class="dot" style="background: var(--gold)"></div>
+              Market Cap Impact
+            </div>
+            <div class="big-number">+$48M</div>
+            <div class="big-label">
+              Очікуваний приріст Market Cap<br />протягом 18 місяців після
+              launch
+            </div>
+
+            <div class="metric-row">
+              <span>D30 Retention</span>
+              <span class="metric-val">+22%</span>
+            </div>
+            <div class="metric-row">
+              <span>LTV/CAC Ratio</span>
+              <span class="metric-val">2.1× → 3.4×</span>
+            </div>
+            <div class="metric-row">
+              <span>Expert Throughput</span>
+              <span class="metric-val">×2.3</span>
+            </div>
+            <div class="metric-row">
+              <span>Organic CAC reduction</span>
+              <span class="metric-val">–20%</span>
+            </div>
+            <div class="metric-row">
+              <span>Revenue uplift (Y1)</span>
+              <span class="metric-val">+35%</span>
+            </div>
+            <div class="metric-row">
+              <span>Payback period</span>
+              <span class="metric-val">~7 міс.</span>
+            </div>
+
+            <div
+              style="
+                margin-top: 12px;
+                padding: 10px;
+                background: rgba(245, 200, 66, 0.08);
+                border-radius: 8px;
+                font-size: 11px;
+                color: rgba(232, 228, 255, 0.7);
+                line-height: 1.5;
+              "
+            >
+              💡 <strong style="color: var(--gold)">Логіка:</strong> При
+              поточному revenue multiple 6-8× — зростання ARR на $6M через
+              retention + expert efficiency = $36-48M Market Cap delta
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+          <div class="footer-brand">🌌 Project Gravity · OBRIO × AskNebula</div>
+          <div>Кожна зоря залишає слід. Цей проєкт — твій.</div>
+          <div>OBRIO Career Storm 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Generate stars
+      const starsEl = document.getElementById("stars");
+      for (let i = 0; i < 120; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        const size = Math.random() * 2.5 + 0.5;
+        star.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      top: ${Math.random() * 100}%;
+      left: ${Math.random() * 100}%;
+      animation-delay: ${Math.random() * 3}s;
+      animation-duration: ${Math.random() * 3 + 2}s;
+    `;
+        starsEl.appendChild(star);
+      }
+    </script>
+  </body>
+</html>

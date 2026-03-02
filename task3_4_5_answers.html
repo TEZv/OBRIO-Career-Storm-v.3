@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tasks 3–5 | OBRIO Career Storm</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #07051a;
+        --surface: #0f0d2a;
+        --card: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.08);
+        --purple: #6c3ee8;
+        --violet: #9b6dff;
+        --teal: #00d4aa;
+        --gold: #f5c842;
+        --red: #ff5c7a;
+        --orange: #ff8c42;
+        --text: #e8e4ff;
+        --muted: #8a82b8;
+      }
+
+      body {
+        background: var(--bg);
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        padding: 48px 32px;
+      }
+
+      .page-header {
+        max-width: 900px;
+        margin: 0 auto 48px;
+        text-align: center;
+      }
+      .page-header .overline {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--violet);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+      .page-header h1 {
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: -1px;
+        background: linear-gradient(135deg, #fff, var(--violet));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+      }
+      .page-header p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .content {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* TASK SECTION */
+      .task-section {
+        margin-bottom: 56px;
+      }
+
+      .task-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .task-num {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 900;
+        flex-shrink: 0;
+      }
+      .t3 .task-num {
+        background: rgba(0, 212, 170, 0.15);
+        color: var(--teal);
+        border: 1px solid rgba(0, 212, 170, 0.3);
+      }
+      .t4 .task-num {
+        background: rgba(108, 62, 232, 0.15);
+        color: var(--violet);
+        border: 1px solid rgba(108, 62, 232, 0.3);
+      }
+      .t5 .task-num {
+        background: rgba(245, 200, 66, 0.15);
+        color: var(--gold);
+        border: 1px solid rgba(245, 200, 66, 0.3);
+      }
+
+      .task-header-text h2 {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+      }
+      .task-header-text p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      /* BLOCKS */
+      .block {
+        margin-bottom: 20px;
+      }
+
+      .block-title {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--muted);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .block-title::before {
+        content: "";
+        display: block;
+        width: 3px;
+        height: 14px;
+        border-radius: 2px;
+      }
+      .t3 .block-title::before {
+        background: var(--teal);
+      }
+      .t4 .block-title::before {
+        background: var(--violet);
+      }
+      .t5 .block-title::before {
+        background: var(--gold);
+      }
+
+      /* GRID */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+      }
+
+      /* CARD */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 18px;
+      }
+      .card-head {
+        font-size: 12px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .card ul,
+      .card ol {
+        padding-left: 0;
+        list-style: none;
+      }
+      .card ul li,
+      .card ol li {
+        font-size: 12.5px;
+        color: rgba(232, 228, 255, 0.8);
+        padding: 3px 0;
+        padding-left: 14px;
+        position: relative;
+        line-height: 1.5;
+      }
+      .card ul li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .card ol {
+        counter-reset: counter;
+      }
+      .card ol li {
+        counter-increment: counter;
+      }
+      .card ol li::before {
+        content: counter(counter) ".";
+        position: absolute;
+        left: 0;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      /* ACCENT CARD */
+      .card.accent-teal {
+        background: rgba(0, 212, 170, 0.06);
+        border-color: rgba(0, 212, 170, 0.2);
+      }
+      .card.accent-violet {
+        background: rgba(108, 62, 232, 0.06);
+        border-color: rgba(108, 62, 232, 0.2);
+      }
+      .card.accent-gold {
+        background: rgba(245, 200, 66, 0.06);
+        border-color: rgba(245, 200, 66, 0.2);
+      }
+      .card.accent-red {
+        background: rgba(255, 92, 122, 0.06);
+        border-color: rgba(255, 92, 122, 0.2);
+      }
+
+      /* METRIC PILL */
+      .metrics-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .metric-pill {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 10px 16px;
+        text-align: center;
+        min-width: 120px;
+      }
+      .metric-pill .val {
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .metric-pill .lbl {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      /* FORMULA */
+      .formula {
+        background: #0d0b1e;
+        border: 1px solid rgba(108, 62, 232, 0.3);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: #c4b5fd;
+        margin: 10px 0;
+      }
+      .formula .result {
+        color: var(--teal);
+        font-weight: 600;
+      }
+      .formula .comment {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      /* TABLE */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12.5px;
+      }
+      .data-table th {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px 12px;
+        text-align: left;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+      }
+      .data-table td {
+        padding: 8px 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        color: rgba(232, 228, 255, 0.85);
+        line-height: 1.4;
+      }
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+      .data-table .highlight-row td {
+        background: rgba(108, 62, 232, 0.08);
+      }
+
+      /* BADGE */
+      .tag {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 600;
+      }
+      .tag-green {
+        background: rgba(0, 212, 170, 0.2);
+        color: var(--teal);
+      }
+      .tag-red {
+        background: rgba(255, 92, 122, 0.2);
+        color: var(--red);
+      }
+      .tag-orange {
+        background: rgba(255, 140, 66, 0.2);
+        color: var(--orange);
+      }
+      .tag-purple {
+        background: rgba(108, 62, 232, 0.2);
+        color: var(--violet);
+      }
+      .tag-gray {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+      }
+
+      /* DIVIDER */
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 24px 0;
+      }
+
+      /* BIG INSIGHT */
+      .insight-box {
+        background: linear-gradient(
+          135deg,
+          rgba(108, 62, 232, 0.12),
+          rgba(0, 212, 170, 0.05)
+        );
+        border: 1px solid rgba(108, 62, 232, 0.25);
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin: 16px 0;
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(232, 228, 255, 0.9);
+      }
+      .insight-box strong {
+        color: white;
+      }
+
+      /* FOOTER */
+      .footer {
+        text-align: center;
+        margin-top: 56px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .back-btn {
+        position: fixed;
+        top: 20px;
+        left: 24px;
+        z-index: 999;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px 8px 12px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(232, 228, 255, 0.7);
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          color 0.2s,
+          transform 0.2s;
+      }
+      .back-btn:hover {
+        background: rgba(108, 62, 232, 0.18);
+        border-color: rgba(108, 62, 232, 0.4);
+        color: #c4b5fd;
+        transform: translateX(-2px);
+      }
+      .back-btn svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      Назад
+    </a>
+
+    <div class="page-header">
+      <div class="overline">OBRIO Career Storm 2026</div>
+      <h1>Tasks 3 · 4 · 5</h1>
+      <p>Operations Management · Scaling Analytics · Payments Infrastructure</p>
+    </div>
+
+    <div class="content">
+      <!-- ═══════════════════════════════ TASK 3 ═══════════════════════════════ -->
+      <div class="task-section t3">
+        <div class="task-header">
+          <div class="task-num">3</div>
+          <div class="task-header-text">
+            <h2>CSAT Drop Response Plan</h2>
+            <p>Operations Manager · Nebula Marketplace · CSAT 4.8 → 4.5</p>
+          </div>
+        </div>
+
+        <!-- SIGNAL -->
+        <div class="metrics-row">
+          <div class="metric-pill">
+            <div class="val" style="color: var(--red)">4.5</div>
+            <div class="lbl">Поточний CSAT</div>
+          </div>
+          <div class="metric-pill">
+            <div class="val" style="color: var(--muted)">4.8</div>
+            <div class="lbl">Попередній CSAT</div>
+          </div>
+          <div class="metric-pill">
+            <div class="val" style="color: var(--orange)">-6.3%</div>
+            <div class="lbl">Δ за тиждень</div>
+          </div>
+          <div class="metric-pill">
+            <div class="val" style="color: var(--teal)">⏱ 48h</div>
+            <div class="lbl">Reaction window</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">
+            Можливі причини — гіпотези (по пріоритету)
+          </div>
+          <div class="grid-2">
+            <div class="card accent-red">
+              <div class="card-head">🔴 Критичний рівень</div>
+              <ul>
+                <li>
+                  <strong>Якість нових експертів:</strong> нещодавній onboarding
+                  batch → низькі рейтинги
+                </li>
+                <li>
+                  <strong>Технічний збій:</strong> latency / баги в сесіях →
+                  перервані з'єднання
+                </li>
+                <li>
+                  <strong>Затримки відповідей:</strong> demand spike →
+                  ліквідність не встигла
+                </li>
+              </ul>
+            </div>
+            <div class="card accent-teal">
+              <div class="card-head">🟡 Середній рівень</div>
+              <ul>
+                <li>
+                  <strong>Зміна продукту:</strong> UI/UX зміна → friction у flow
+                </li>
+                <li>
+                  <strong>Сезонний ефект:</strong> зміна аудиторії (нові user
+                  сегменти)
+                </li>
+                <li>
+                  <strong>Pricing/expectations gap:</strong> нова ціна →
+                  завищені очікування
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">
+            Підхід до аналізу даних (48-годинний sprint)
+          </div>
+          <div class="card">
+            <table class="data-table">
+              <tr>
+                <th>Крок</th>
+                <th>Дія</th>
+                <th>Інструмент / Дані</th>
+                <th>Час</th>
+              </tr>
+              <tr>
+                <td><span class="tag tag-purple">1</span></td>
+                <td>
+                  Сегментуй відгуки &lt; 4 зірок — витяг verbatim коментарів
+                </td>
+                <td>Zendesk / Typeform tags</td>
+                <td>2 год</td>
+              </tr>
+              <tr>
+                <td><span class="tag tag-purple">2</span></td>
+                <td>
+                  Cohort breakout: CSAT по expert_id, channel, session_type
+                </td>
+                <td>BI Dashboard / SQL</td>
+                <td>3 год</td>
+              </tr>
+              <tr>
+                <td><span class="tag tag-purple">3</span></td>
+                <td>
+                  Correlation: CSAT vs response_time, session_length,
+                  expert_rating
+                </td>
+                <td>Python / Looker</td>
+                <td>4 год</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><span class="tag tag-green">4</span></td>
+                <td>
+                  Знайди "root cause" через Pareto: 20% причин → 80% падіння
+                </td>
+                <td>Фреймворк 5 Whys</td>
+                <td>2 год</td>
+              </tr>
+              <tr>
+                <td><span class="tag tag-purple">5</span></td>
+                <td>
+                  Технічний аудит: session errors, latency spikes, API logs
+                </td>
+                <td>DataDog / Sentry</td>
+                <td>3 год</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">Заходи для покращення</div>
+          <div class="grid-2">
+            <div class="card accent-teal">
+              <div class="card-head">⚡ Short-term (0–2 тижні)</div>
+              <ul>
+                <li>
+                  Тимчасово припинити показ експертів з рейтингом &lt;4.2 за
+                  тиждень
+                </li>
+                <li>
+                  Personalized апологія + partial refund для постраждалих юзерів
+                </li>
+                <li>Аварійний hotfix якщо знайдено tech bug</li>
+                <li>
+                  Посилений QA моніторинг: daily CSAT alerts замість weekly
+                </li>
+                <li>Тимчасово збільшити CS-команду на піковий час</li>
+              </ul>
+            </div>
+            <div class="card accent-violet">
+              <div class="card-head">🔭 Long-term (1–3 місяці)</div>
+              <ul>
+                <li>
+                  Redesign expert onboarding: shadow sessions + probation period
+                </li>
+                <li>Predictive CSAT model: попереджати падіння до факту</li>
+                <li>AI post-session summary → знижує misalignment очікувань</li>
+                <li>
+                  SLA на response time: гарантований відповідь &lt;3 хв або
+                  discount
+                </li>
+                <li>
+                  NPS + CSAT touchpoints на кожному ключовому кроці journey
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">KPI для моніторингу ефективності</div>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-head">📊 Primary</div>
+              <ul>
+                <li>CSAT (weekly + daily during incident)</li>
+                <li>NPS за когортами юзерів</li>
+                <li>Expert avg rating score</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="card-head">⚙️ Operational</div>
+              <ul>
+                <li>Avg response time (Expert)</li>
+                <li>Session completion rate</li>
+                <li>Refund / dispute rate</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="card-head">💼 Business</div>
+              <ul>
+                <li>Repeat booking rate</li>
+                <li>Churn rate (7d, 30d)</li>
+                <li>Revenue per user (RPU)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ TASK 4 ═══════════════════════════════ -->
+      <div class="task-section t4">
+        <div class="task-header">
+          <div class="task-num">4</div>
+          <div class="task-header-text">
+            <h2>Scaling Operations Analysis</h2>
+            <p>
+              Operations Vertical · Intensive Scaling Phase · RPE +15% /
+              Availability -10%
+            </p>
+          </div>
+        </div>
+
+        <!-- Q1: RPE vs Liquidity -->
+        <div class="block">
+          <div class="block-title">① Кореляція RPE ↑ та ліквідності ↓</div>
+          <div class="insight-box">
+            <strong>Механіка:</strong> RPE зростає, коли на меншу кількість
+            доступних сесій припадає той самий або більший попит. Це
+            <strong>класична liquidity squeeze</strong>: платформа "доїть"
+            топ-перформерів замість розширення пропозиції. Довготривало — це
+            руйнує ринок, бо high-performers вигорають або переходять до
+            конкурентів.
+          </div>
+          <div class="grid-2">
+            <div class="card accent-violet">
+              <div class="card-head">📈 Позитивний сценарій RPE↑</div>
+              <ul>
+                <li>Зріст якості сесій → вищий ticket</li>
+                <li>Покращена value proposition → платять більше за те саме</li>
+                <li>Pricing power зростає разом з брендом</li>
+              </ul>
+            </div>
+            <div class="card accent-red">
+              <div class="card-head">💀 Руйнівний сценарій RPE↑</div>
+              <ul>
+                <li>
+                  RPE ↑ через дефіцит, не через value → supply-side crisis
+                </li>
+                <li>High-performers overloaded → burnout → відтік</li>
+                <li>
+                  Нові юзери не знаходять слот → зростає CAC, падає конверсія
+                </li>
+                <li>
+                  Liquidity death spiral: менше experts → ще вищий RPE → ще
+                  більший burnout
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="block-title" style="margin-top: 16px">
+            Нормалізація балансу — конкретні кроки
+          </div>
+          <div class="card">
+            <ol>
+              <li>
+                <strong>Emergency supply expansion:</strong> activation кампанія
+                для sleeping experts (раніше зареєстровані, але неактивні) —
+                target: +15% availability за 30 днів
+              </li>
+              <li>
+                <strong>Capacity throttle для high-performers:</strong> введи
+                max_sessions_per_week cap + recovery days — захист від burnout
+              </li>
+              <li>
+                <strong>Dynamic pricing incentive для off-peak:</strong> experts
+                отримують +10% до fee за сесії у непікові години → перерозподіл
+                попиту
+              </li>
+              <li>
+                <strong>Expert fast-track onboarding:</strong> скоротити
+                onboarding pipeline з 14 до 5 днів для pre-vetted кандидатів
+              </li>
+              <li>
+                <strong>Demand shaping:</strong> push-notifications з
+                рекомендацією off-peak слотів для юзерів з гнучким розкладом
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Q2: Liquidity down + High-performer plateau -->
+        <div class="block">
+          <div class="block-title">
+            ② Ліквідність ↓ + Utilization High-performers на плато → що це
+            означає?
+          </div>
+          <div class="insight-box">
+            <strong>Діагноз:</strong> High-performers вже на межі capacity і не
+            можуть зростати далі. Ліквідність при цьому падає — значить
+            <strong>середня та нижня когорти фактично виходять з ринку</strong>
+            (не беруть сесій). Платформа тримається на критично малій кількості
+            людей → системний ризик.
+          </div>
+          <div class="card accent-violet" style="margin-bottom: 12px">
+            <div class="card-head">🔬 Proxy-метрика для глибокого аналізу</div>
+            <div class="formula">
+              <div>
+                <span class="comment">// Expert Health Score (EHS)</span>
+              </div>
+              <div>
+                EHS = (sessions_last_7d / max_capacity_7d) × availability_rate ×
+                quality_score
+              </div>
+              <br />
+              <div><span class="comment">// Breakout по когортах:</span></div>
+              <div>
+                EHS &lt; 0.4 →
+                <span style="color: var(--red)">at_risk_expert</span>
+              </div>
+              <div>
+                EHS 0.4–0.75 →
+                <span style="color: var(--gold)">stable_expert</span>
+              </div>
+              <div class="result">EHS &gt; 0.75 → optimal_zone</div>
+              <br />
+              <div>
+                <span class="comment"
+                  >// Alert: якщо % at_risk зростає → liquidity crisis
+                  incoming</span
+                >
+              </div>
+            </div>
+            <ul>
+              <li>
+                Також: <strong>Churn Intent Signal</strong> = експерт зменшив
+                availability &gt;30% протягом 2 тижнів поспіль
+              </li>
+              <li>
+                Рішення: автоматичний outreach від AM при ранньому сигналі +
+                retention offer
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Q3: Break linear dependency -->
+        <div class="block">
+          <div class="block-title">
+            ③ Розрив лінійної залежності: +70-100 experts → +1 AM
+          </div>
+          <div class="insight-box">
+            <strong>Ціль:</strong> Перейти від моделі "AM як нянька для кожного
+            експерта" до "AM як strategic partner для top tier, AI — для всього
+            решти". Це <strong>Management by Exception</strong>.
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">⚙️ Зміни в процесах</div>
+              <ol>
+                <li>
+                  <strong>Tier-based AM model:</strong> AM фокусується виключно
+                  на Top 20% (за revenue) — решта → self-serve + AI support
+                </li>
+                <li>
+                  <strong>Automated QA pipeline:</strong> AI аналізує session
+                  transcripts, ratings, response time → формує weekly expert
+                  health report без участі AM
+                </li>
+                <li>
+                  <strong>Expert self-service portal:</strong> scheduling,
+                  payments, FAQ, performance analytics — все без AM involvement
+                </li>
+                <li>
+                  <strong>Exception triggers:</strong> AM отримує тасок лише при
+                  EHS &lt; 0.4 або churn intent signal
+                </li>
+              </ol>
+            </div>
+            <div class="card">
+              <div class="card-head">📊 KPI переходу (Success/Fail)</div>
+              <ul>
+                <li>
+                  <strong>Success:</strong> AM ratio змінюється з 1:80 до 1:180+
+                  без деградації CSAT
+                </li>
+                <li>
+                  <strong>Success:</strong> Admin Cost Revenue Share ↓ 15%+ за 2
+                  квартали
+                </li>
+                <li>
+                  <strong>Success:</strong> % handoffs вирішених AI без
+                  escalation ≥ 70%
+                </li>
+                <li>
+                  <strong>Fail signal:</strong> Expert churn rate ↑ &gt;5%
+                  протягом 30 днів після переходу
+                </li>
+                <li>
+                  <strong>Fail signal:</strong> CSAT mid/low tier experts падає
+                  &gt;0.2 pts
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4: AI Automation -->
+        <div class="block">
+          <div class="block-title">
+            ④ AI-автоматизація: що передати LLM-агенту?
+          </div>
+          <div class="grid-2">
+            <div class="card accent-teal">
+              <div class="card-head">🤖 Дані для LLM-агента</div>
+              <ul>
+                <li>
+                  <strong>Session metadata:</strong> duration, rating,
+                  response_time, completion_rate
+                </li>
+                <li>
+                  <strong>Session transcripts:</strong> sentiment аналіз, key
+                  topics, скарги
+                </li>
+                <li>
+                  <strong>Expert historical performance:</strong> 30/60/90d CSAT
+                  trend
+                </li>
+                <li>
+                  <strong>Availability patterns:</strong> no-show rate, late
+                  cancellation frequency
+                </li>
+                <li>
+                  <strong>User feedback verbatims:</strong> теги + кластеризація
+                  за типом проблеми
+                </li>
+                <li>
+                  <strong>Cohort benchmark:</strong> vs peers у тій самій
+                  категорії
+                </li>
+              </ul>
+            </div>
+            <div class="card accent-violet">
+              <div class="card-head">
+                👤 Унікальна цінність AM (те, що AI не замінить)
+              </div>
+              <ul>
+                <li>
+                  <strong>Довіра та стосунки:</strong> expert trust, особистий
+                  зв'язок при кризах
+                </li>
+                <li>
+                  <strong>Стратегічний розвиток:</strong> career coaching, нові
+                  вертикалі для топ-тал.
+                </li>
+                <li>
+                  <strong>Переговори:</strong> складні ситуації, нестандартні
+                  кейси, winback
+                </li>
+                <li>
+                  <strong>Контекст поза даними:</strong> особисті обставини,
+                  культурні нюанси
+                </li>
+                <li>
+                  <strong>Адвокатство бренду:</strong> перетворення experts на
+                  амбасадорів
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="formula" style="margin-top: 12px">
+            <div>
+              <span class="comment">// Логіка агента (pseudo-code)</span>
+            </div>
+            <div>
+              IF expert.ehr_score &lt; threshold OR sentiment.negative_trend
+              &gt; 2_weeks:
+            </div>
+            <div>
+              &nbsp;&nbsp;→
+              <span class="result">generate_intervention_brief()</span> →
+              send_to_AM_queue(priority=HIGH)
+            </div>
+            <div>ELIF expert.session_quality == "anomaly_single":</div>
+            <div>
+              &nbsp;&nbsp;→
+              <span style="color: var(--gold)"
+                >auto_send_check_in_message()</span
+              >
+              → log_for_weekly_review()
+            </div>
+            <div>ELSE:</div>
+            <div>
+              &nbsp;&nbsp;→
+              <span style="color: var(--muted)">routine_monitoring_only()</span>
+              → weekly_digest()
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ TASK 5 ═══════════════════════════════ -->
+      <div class="task-section t5">
+        <div class="task-header">
+          <div class="task-num">5</div>
+          <div class="task-header-text">
+            <h2>Payments</h2>
+            <p>Transaction Ecosystem · Payment Metrics · US Market Entry</p>
+          </div>
+        </div>
+
+        <!-- PART I — Учасники -->
+        <div class="block">
+          <div class="block-title">I.1 — Учасники карткової транзакції</div>
+          <div class="card">
+            <table class="data-table">
+              <tr>
+                <th>Учасник</th>
+                <th>Роль</th>
+                <th>Чому незамінний</th>
+              </tr>
+              <tr>
+                <td><strong>🏦 Issuing Bank</strong></td>
+                <td>Банк, який видав картку покупцю</td>
+                <td>
+                  Авторизує або відхиляє транзакцію, перевіряючи баланс і
+                  ліміти. Без нього немає підтвердження коштів
+                </td>
+              </tr>
+              <tr>
+                <td><strong>🏪 Acquiring Bank</strong></td>
+                <td>Банк, що обслуговує мерчанта</td>
+                <td>
+                  Отримує запит від мерчанта, передає його в мережу і зрештою
+                  зараховує гроші на рахунок продавця
+                </td>
+              </tr>
+              <tr>
+                <td><strong>🌐 Card Network</strong></td>
+                <td>Visa / Mastercard — рейки між банками</td>
+                <td>
+                  Маршрутизує транзакцію між issuing і acquiring банком,
+                  встановлює правила і interchange fees
+                </td>
+              </tr>
+              <tr>
+                <td><strong>⚙️ Payment Processor</strong></td>
+                <td>Технічний оператор (Stripe, Adyen)</td>
+                <td>
+                  Обробляє дані картки, шифрує їх і передає між усіма сторонами
+                  в реальному часі. Без нього немає технічного з'єднання
+                </td>
+              </tr>
+              <tr>
+                <td><strong>🛍 Merchant</strong></td>
+                <td>Продавець / бізнес (OBRIO/Nebula)</td>
+                <td>
+                  Ініціює транзакцію, приймає оплату за свій продукт. Без
+                  мерчанта немає підстави для транзакції
+                </td>
+              </tr>
+              <tr>
+                <td><strong>👤 Cardholder</strong></td>
+                <td>Покупець — власник картки</td>
+                <td>
+                  Ініціює платіж своїми коштами. Без покупця немає ні попиту, ні
+                  грошей у системі
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- PART I.2 — Простою мовою -->
+        <div class="block">
+          <div class="block-title">
+            I.2 — Пояснення простою мовою (для бабусі 👵)
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">🪪 MID (Merchant ID)</div>
+              <p
+                style="
+                  font-size: 12.5px;
+                  color: rgba(232, 228, 255, 0.8);
+                  line-height: 1.5;
+                "
+              >
+                Уявіть, що ваш магазин — це будинок, а MID — це адреса цього
+                будинку в системі платежів. Коли вам надходить оплата, банк знає
+                точно, на яку "адресу" відправити гроші. Без цього унікального
+                номеру гроші просто загубляться.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-head">✅ Прохідність платежів</div>
+              <p
+                style="
+                  font-size: 12.5px;
+                  color: rgba(232, 228, 255, 0.8);
+                  line-height: 1.5;
+                "
+              >
+                З кожних 100 спроб заплатити — скільки завершились успішно. Якщо
+                70 людей зі 100 змогли оплатити — прохідність 70%. Решта або не
+                мали грошей, або банк запідозрив шахрайство, або сталася
+                технічна помилка.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-head">💸 Returned Revenue</div>
+              <p
+                style="
+                  font-size: 12.5px;
+                  color: rgba(232, 228, 255, 0.8);
+                  line-height: 1.5;
+                "
+              >
+                Це гроші, які спочатку надійшли, але потім довелося повернути.
+                Наприклад: клієнт передумав і попросив повернення, або банк
+                скасував платіж після суперечки. Це як продати торт, а потім
+                його повернули — і гроші, і торт пропали.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-head">😈 Friendly Fraud</div>
+              <p
+                style="
+                  font-size: 12.5px;
+                  color: rgba(232, 228, 255, 0.8);
+                  line-height: 1.5;
+                "
+              >
+                Коли людина купила послугу, скористалась нею, а потім телефонує
+                в банк і каже "я цього не замовляла". Банк повертає їй гроші, а
+                магазин залишається ні з чим. Це шахрайство, але зроблене
+                "по-сусідськи" — нібито безневинно.
+              </p>
+            </div>
+            <div class="card" style="grid-column: 1 / -1">
+              <div class="card-head">
+                🔄 MIT (Merchant-Initiated Transaction)
+              </div>
+              <p
+                style="
+                  font-size: 12.5px;
+                  color: rgba(232, 228, 255, 0.8);
+                  line-height: 1.5;
+                "
+              >
+                Коли магазин самостійно знімає гроші з вашої картки без вашої
+                присутності — наприклад, щомісячна підписка. Ви одного разу дали
+                дозвіл ("так, підпишіть мене"), і тепер платіж відбувається
+                автоматично, ніби магазин має ключ від вашого гаманця.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PART I.3 — Розрахунки -->
+        <div class="block">
+          <div class="block-title">I.3 — Аналіз прохідності</div>
+
+          <div class="metrics-row">
+            <div class="metric-pill">
+              <div class="val" style="color: var(--text)">10 000</div>
+              <div class="lbl">Всього спроб</div>
+            </div>
+            <div class="metric-pill">
+              <div class="val" style="color: var(--teal)">7 000</div>
+              <div class="lbl">Успішних</div>
+            </div>
+            <div class="metric-pill">
+              <div class="val" style="color: var(--red)">1 500</div>
+              <div class="lbl">Insufficient funds</div>
+            </div>
+            <div class="metric-pill">
+              <div class="val" style="color: var(--orange)">800</div>
+              <div class="lbl">Fraud decline</div>
+            </div>
+            <div class="metric-pill">
+              <div class="val" style="color: var(--muted)">600</div>
+              <div class="lbl">Tech decline</div>
+            </div>
+          </div>
+
+          <div class="formula">
+            <div><span class="comment">// Загальна прохідність</span></div>
+            <div>
+              Total Approval Rate = 7,000 / 10,000 =
+              <span class="result">70.0%</span>
+            </div>
+            <br />
+            <div>
+              <span class="comment"
+                >// Скоригована прохідність (без insufficient funds — не можемо
+                вплинути)</span
+              >
+            </div>
+            <div>
+              Adjusted Rate = 7,000 / (10,000 - 1,500) = 7,000 / 8,500 =
+              <span class="result">82.4%</span>
+            </div>
+            <br />
+            <div>
+              <span class="comment">// Деклайни, які МОЖНА покращити:</span>
+            </div>
+            <div>
+              → <span style="color: var(--orange)">Fraud decline (800)</span>:
+              tuning fraud rules, 3DS smart routing
+            </div>
+            <div>
+              → <span style="color: var(--muted)">Tech decline (600)</span>:
+              retry logic, payment provider redundancy
+            </div>
+            <br />
+            <div>
+              <span class="comment"
+                >// НЕ варто включати у скориговану прохідність:</span
+              >
+            </div>
+            <div>
+              →
+              <span style="color: var(--red)">Insufficient funds (1,500)</span>:
+              це реальний стан рахунку, ми не можемо його змінити
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 12px">
+            <div class="card-head">
+              💰 3 складові Returned Revenue та їх вплив на Cost of Revenue
+            </div>
+            <table class="data-table">
+              <tr>
+                <th>Складова</th>
+                <th>Що це</th>
+                <th>Вплив на Cost of Revenue</th>
+              </tr>
+              <tr>
+                <td><strong>🔙 Refunds</strong></td>
+                <td>Добровільне повернення за запитом клієнта</td>
+                <td>
+                  Пряме зменшення revenue + вже понесені processing fees не
+                  повертаються → double loss
+                </td>
+              </tr>
+              <tr>
+                <td><strong>⚡ Chargebacks</strong></td>
+                <td>Оскарження через банк (включно з friendly fraud)</td>
+                <td>
+                  Повернення + штраф $15-100 за chargeback + ризик підвищення
+                  merchant fee якщо rate &gt;1%
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>🔄 Subscription Cancellations (після оплати)</strong>
+                </td>
+                <td>Скасування після тарифного billing cycle</td>
+                <td>
+                  Pro-rated повернення + LTV loss + потенційний chargeback якщо
+                  скасування не оброблено вчасно
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- PART II — US Market -->
+        <div class="block">
+          <div class="block-title">
+            II — Вихід на ринок США: низька прохідність, fraud, chargebacks
+          </div>
+          <div class="insight-box">
+            <strong>Два фундаментальних питання:</strong>
+            (A) <strong>Чи знає банк емітента про цей мерчант?</strong> →
+            довіра/авторизація · (B)
+            <strong>Чи захищений мерчант від зворотного ризику?</strong> →
+            захист від fraud + chargebacks
+          </div>
+          <div class="card">
+            <table class="data-table">
+              <tr>
+                <th>Точка впливу</th>
+                <th>Конкретна дія</th>
+                <th>Фундаментальне питання</th>
+              </tr>
+              <tr>
+                <td><strong>1. Авторизація першого платежу</strong></td>
+                <td>
+                  Smart routing через декілька acquirers (Stripe + Braintree) +
+                  local US acquiring entity для вищого approval rate у US
+                  банків. Тестуй BIN-level performance
+                </td>
+                <td><span class="tag tag-purple">A — довіра банку</span></td>
+              </tr>
+              <tr>
+                <td><strong>2. Fraud Prevention</strong></td>
+                <td>
+                  Впровади 3DS2 з risk-based authentication (не friction для
+                  low-risk). Додай velocity checks + device fingerprinting
+                  (Sift, Kount). Чорний список підозрілих BIN patterns
+                </td>
+                <td><span class="tag tag-orange">B — захист мерчанта</span></td>
+              </tr>
+              <tr>
+                <td><strong>3. Chargeback Management</strong></td>
+                <td>
+                  Compelling evidence пакет для Visa/MC disputes (session logs,
+                  IP, timestamp). Розгорни Chargeback Alert services (Ethoca,
+                  Verifi) — отримуй сигнал до фактичного chargeback і роби
+                  proactive refund
+                </td>
+                <td><span class="tag tag-orange">B — захист мерчанта</span></td>
+              </tr>
+              <tr>
+                <td><strong>+ Bonus: Descriptor Optimization</strong></td>
+                <td>
+                  Зрозумілий descriptor "NEBULA.COM 888-XXX-XXXX" замість "OBRIO
+                  LTD" → зменшення friendly fraud через впізнаваність
+                </td>
+                <td><span class="tag tag-purple">A — довіра банку</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <p>🌌 OBRIO Career Storm 2026 · Tasks 3–5 · Operations & Payments</p>
+        <p style="margin-top: 6px; font-size: 11px">
+          Всі сценарії є гіпотетичними та призначені для демонстрації
+          аналітичного мислення
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
